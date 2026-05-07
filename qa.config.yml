@@ -1,19 +1,21 @@
-# Per-fixture QA configuration. Fixtures override this file.
-# DO NOT change in the template; change only in spawned fixtures.
-
-description: "TEMPLATE — overridden by each fixture."
-instrumentation: native            # native | junit
-flake_rate: 0.0                    # probability each pooled test fails per run
+description: "Zero flakes, all four protections on. Drives the all-clean verdicts and §7.3 empty state."
+instrumentation: native
+flake_rate: 0.0
 num_flaky_tests: 0
 num_stable_tests: 50
 include_failing_tests: false
 codeowners: true
-qa_target_branches: []
+qa_target_branches:
+    - "§3.4 #7 — Your CI signal is clean."
+    - "§5.2 #1 — Prevention is working."
+    - "§6.2 #1 — No flaky pipeline failures to mitigate."
+    - "§7.2 #1 — No active flaky tests in this repository."
+    - "§7.3 — empty state with success icon."
 required_toggles:
-    efd: off
-    pr_gate: off
-    atr: off
-    policies: none
-    bits_proactive_prs: off
-warmup: "n/a — template has no warmup"
+    efd: on
+    pr_gate: on
+    atr: on
+    policies: full
+    bits_proactive_prs: n/a
+warmup: "*/30 min for 7 days, then 0 */6 * * *. Ready T+7."
 datadog_org: "<fill-in-org-url>"
